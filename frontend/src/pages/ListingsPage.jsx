@@ -5,10 +5,12 @@ import { ListingCard } from '@/components/ListingCard';
 import { FilterPanel } from '@/components/FilterPanel';
 import { Button } from '@/components/ui/button';
 import { SlidersHorizontal } from 'lucide-react';
+import { SkeletonList } from '@/components/SkeletonLoader';
 
 export default function ListingsPage() {
   const [searchParams] = useSearchParams();
   const [showMobileFilters, setShowMobileFilters] = useState(false);
+  const [loading, setLoading] = useState(true);
   const [filters, setFilters] = useState({
     types: [],
     duration: 'all',
