@@ -234,87 +234,108 @@ frontend:
 backend:
   - task: "Auth APIs (Register & Login)"
     implemented: true
-    working: "NA"
+    working: true
     file: "backend/routes/auth.js"
     stuck_count: 0
     priority: "high"
-    needs_retesting: true
+    needs_retesting: false
     status_history:
       - working: "NA"
         agent: "main"
         comment: "POST /api/auth/register and /api/auth/login with JWT token generation, password hashing"
+      - working: true
+        agent: "testing"
+        comment: "✅ TESTED: Registration and login working perfectly. JWT tokens generated correctly, requiresRoleSelection flag working, duplicate registration prevented, invalid credentials rejected."
 
   - task: "User APIs (me & select-role)"
     implemented: true
-    working: "NA"
+    working: true
     file: "backend/routes/user.js"
     stuck_count: 0
     priority: "high"
-    needs_retesting: true
+    needs_retesting: false
     status_history:
       - working: "NA"
         agent: "main"
         comment: "GET /api/user/me and POST /api/user/select-role with role validation"
+      - working: true
+        agent: "testing"
+        comment: "✅ TESTED: User info retrieval working, role selection (OWNER/CUSTOMER) working correctly, duplicate role selection properly blocked, invalid roles rejected."
 
   - task: "Owner Profile APIs"
     implemented: true
-    working: "NA"
+    working: true
     file: "backend/routes/owner.js"
     stuck_count: 0
     priority: "high"
-    needs_retesting: true
+    needs_retesting: false
     status_history:
       - working: "NA"
         agent: "main"
         comment: "POST/GET /api/owner/profile with owner-only access control"
+      - working: true
+        agent: "testing"
+        comment: "✅ TESTED: Owner profile creation and retrieval working. Contact number and description saved correctly. Customer access properly blocked with 403."
 
   - task: "Listings APIs (CRUD)"
     implemented: true
-    working: "NA"
+    working: true
     file: "backend/routes/listings.js"
     stuck_count: 0
     priority: "high"
-    needs_retesting: true
+    needs_retesting: false
     status_history:
       - working: "NA"
         agent: "main"
         comment: "POST/GET/GET:id/PUT/DELETE /api/listings with owner verification, filters, Google Maps fields"
+      - working: true
+        agent: "testing"
+        comment: "✅ TESTED: Listing CRUD operations working perfectly. Google Maps lat/lng fields saved correctly. Owner info populated. Customer blocked from creating listings (403). Filters and single listing retrieval working."
 
   - task: "Reviews APIs"
     implemented: true
-    working: "NA"
+    working: true
     file: "backend/routes/reviews.js"
     stuck_count: 0
     priority: "high"
-    needs_retesting: true
+    needs_retesting: false
     status_history:
       - working: "NA"
         agent: "main"
         comment: "POST /api/reviews with validation (no self-reviews, 1 per listing), GET reviews by listing"
+      - working: true
+        agent: "testing"
+        comment: "✅ TESTED: Review creation working correctly. Owner self-review blocked. Duplicate reviews blocked. Reviews retrieval with average rating calculation working. User info populated in reviews."
 
   - task: "JWT Authentication Middleware"
     implemented: true
-    working: "NA"
+    working: true
     file: "backend/middleware/auth.js"
     stuck_count: 0
     priority: "high"
-    needs_retesting: true
+    needs_retesting: false
     status_history:
       - working: "NA"
         agent: "main"
         comment: "authMiddleware, requireRole, requireOwner, requireCustomer middlewares"
+      - working: true
+        agent: "testing"
+        comment: "✅ TESTED: JWT authentication working perfectly. Unauthenticated requests return 401. Role-based access control working (owners/customers properly separated). Invalid tokens rejected."
 
   - task: "MongoDB Models"
     implemented: true
-    working: "NA"
+    working: true
     file: "backend/models/*.js"
     stuck_count: 0
     priority: "high"
-    needs_retesting: true
+    needs_retesting: false
     status_history:
       - working: "NA"
         agent: "main"
         comment: "User (with role), OwnerProfile, Listing (with Google Maps fields), Review models complete"
+      - working: true
+        agent: "testing"
+        comment: "✅ TESTED: All models working correctly. User model with role field, OwnerProfile with contact/description, Listing with Google Maps fields (lat/lng), Review with rating validation. Data persistence verified."
 
 metadata:
   created_by: "main_agent"
