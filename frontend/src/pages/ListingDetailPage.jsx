@@ -2,10 +2,15 @@ import { useParams, useNavigate } from 'react-router-dom';
 import { useState } from 'react';
 import { mockListings } from '@/data/mockListings';
 import { MapPreview } from '@/components/MapPreview';
+import { ImageCarousel } from '@/components/ImageCarousel';
+import { OwnerProfileCard } from '@/components/OwnerProfileCard';
+import { AvailabilityCalendar } from '@/components/AvailabilityCalendar';
+import { ReviewsSection } from '@/components/ReviewsSection';
+import { SimilarListings } from '@/components/SimilarListings';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
-import { ArrowLeft, Heart, MapPin, Bed, Bath, Maximize, CheckCircle2 } from 'lucide-react';
+import { ArrowLeft, Heart, MapPin, Bed, Bath, Maximize, CheckCircle2, Share2 } from 'lucide-react';
 import { addFavorite, removeFavorite, isFavorite } from '@/utils/localStorage';
 
 export default function ListingDetailPage() {
