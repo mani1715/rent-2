@@ -95,6 +95,84 @@ export default function LandingPage() {
         </div>
       </section>
 
+      {/* Featured Listings Section */}
+      <section className="py-16 px-4 sm:px-6 lg:px-8" style={{ backgroundColor: 'white' }}>
+        <div className="max-w-7xl mx-auto">
+          <div className="flex items-center justify-between mb-12">
+            <div>
+              <h2 className="text-3xl sm:text-4xl font-bold" style={{ color: '#1F2937' }}>
+                Featured Properties
+              </h2>
+              <p className="text-gray-600 mt-2">Hand-picked premium listings</p>
+            </div>
+            <Link to="/listings">
+              <Button variant="outline" className="hidden sm:flex">
+                View All
+                <ArrowRight className="ml-2 h-4 w-4" />
+              </Button>
+            </Link>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {featuredListings.map(listing => (
+              <ListingCard key={listing.id} listing={listing} />
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* How It Works Section */}
+      <section className="py-16 px-4 sm:px-6 lg:px-8">
+        <div className="max-w-7xl mx-auto text-center">
+          <h2 className="text-3xl sm:text-4xl font-bold mb-4" style={{ color: '#1F2937' }}>
+            How It Works
+          </h2>
+          <p className="text-gray-600 mb-12 max-w-2xl mx-auto">
+            Finding your perfect rental is easy with our simple three-step process
+          </p>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
+            <div className="text-center">
+              <div className="inline-flex items-center justify-center w-16 h-16 rounded-full mb-4" style={{ backgroundColor: '#EFF6FF' }}>
+                <Shield className="h-8 w-8" style={{ color: '#2563EB' }} />
+              </div>
+              <h3 className="text-xl font-semibold mb-2" style={{ color: '#1F2937' }}>
+                Search & Discover
+              </h3>
+              <p className="text-gray-600">
+                Browse verified properties that match your needs
+              </p>
+            </div>
+            <div className="text-center">
+              <div className="inline-flex items-center justify-center w-16 h-16 rounded-full mb-4" style={{ backgroundColor: '#EFF6FF' }}>
+                <Users className="h-8 w-8" style={{ color: '#2563EB' }} />
+              </div>
+              <h3 className="text-xl font-semibold mb-2" style={{ color: '#1F2937' }}>
+                Connect & Visit
+              </h3>
+              <p className="text-gray-600">
+                Contact owners and schedule property visits
+              </p>
+            </div>
+            <div className="text-center">
+              <div className="inline-flex items-center justify-center w-16 h-16 rounded-full mb-4" style={{ backgroundColor: '#EFF6FF' }}>
+                <Star className="h-8 w-8" style={{ color: '#2563EB' }} />
+              </div>
+              <h3 className="text-xl font-semibold mb-2" style={{ color: '#1F2937' }}>
+                Book & Move In
+              </h3>
+              <p className="text-gray-600">
+                Secure your rental and move into your new space
+              </p>
+            </div>
+          </div>
+          <Link to="/how-it-works">
+            <Button variant="outline">
+              Learn More
+              <ArrowRight className="ml-2 h-4 w-4" />
+            </Button>
+          </Link>
+        </div>
+      </section>
+
       <section className="py-16 px-4 sm:px-6 lg:px-8" style={{ backgroundColor: 'white' }}>
         <div className="max-w-7xl mx-auto">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
