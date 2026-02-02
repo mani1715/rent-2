@@ -340,35 +340,49 @@ test_plan:
 agent_communication:
   - agent: "main"
     message: |
-      COMPLETED REMAINING FEATURES:
+      FULL-STACK IMPLEMENTATION COMPLETE - ALL FEATURES IMPLEMENTED ✅
       
-      1. ✅ Added How It Works page route to App.js (/how-it-works)
-      2. ✅ Implemented skeleton loaders in ListingsPage (800ms delay)
-      3. ✅ Implemented skeleton loaders in FavoritesPage (600ms delay)
-      4. ✅ Verified design consistency - no gradients, proper color palette
-      5. ✅ All components use rounded cards with soft shadows
-      6. ✅ Mobile-first responsive design throughout
+      BACKEND (Node.js + Express + MongoDB):
+      1. ✅ Auth Routes: /api/auth/register, /api/auth/login with JWT
+      2. ✅ User Routes: /api/user/me, /api/user/select-role
+      3. ✅ Owner Routes: /api/owner/profile (POST/GET)
+      4. ✅ Listings Routes: /api/listings (POST/GET/GET:id/PUT/DELETE) with Google Maps fields
+      5. ✅ Reviews Routes: /api/reviews (POST/GET) with validation
+      6. ✅ JWT Middleware: authMiddleware, requireRole, requireOwner, requireCustomer
+      7. ✅ Models: User (role field), OwnerProfile, Listing (lat/lng/googleMapsLink), Review
       
-      ALL REQUIRED FEATURES FROM SPECIFICATION ARE NOW COMPLETE:
-      - Landing page ✅
-      - How It Works page ✅  
-      - Listings page with search + filters ✅
-      - Listing cards ✅
-      - Listing detail page (all sections) ✅
-      - Add listing multi-step form (6 steps) ✅
-      - Favorites with localStorage ✅
-      - 15 mock listings ✅
-      - Skeleton loaders ✅
-      - Professional design (no gradients, correct colors) ✅
+      FRONTEND (React):
+      1. ✅ Auth: Login, Register pages with JWT integration
+      2. ✅ Role Selection: One-time permanent choice (OWNER/CUSTOMER)
+      3. ✅ AuthContext: Token management, axios headers, auth state
+      4. ✅ Owner Dashboard: Fetches owner's listings, shows stats
+      5. ✅ Owner Profile: Contact number, description form
+      6. ✅ Add Listing: Address, lat/lng fields, auto-generates Google Maps link
+      7. ✅ Listings Page: Fetches from backend, displays all listings
+      8. ✅ Listing Detail: Property info, owner info, reviews, "Open in Google Maps" button
+      9. ✅ Review Submission: POST to /api/reviews, login required
+      10. ✅ Protected Routes: Role-based access control
       
-      READY FOR COMPREHENSIVE TESTING.
+      GOOGLE MAPS INTEGRATION:
+      - Latitude & longitude input fields in Add Listing form
+      - Auto-generates Google Maps link: https://www.google.com/maps?q={lat},{lng}
+      - "Open in Google Maps" button on Listing Detail page opens externally
       
-      Please test:
-      1. Navigation to all pages including /how-it-works
-      2. Hero search functionality
-      3. Filters on listings page
-      4. Skeleton loaders on listings and favorites pages
-      5. Favorite button functionality across pages
-      6. Add listing multi-step form (all 6 steps)
-      7. Mobile responsiveness
-      8. All interactive elements
+      SECURITY & ACCESS:
+      - JWT authentication on all protected routes
+      - Role selection is permanent (cannot be changed)
+      - Only owners can add/edit/delete listings
+      - Only logged-in users can post reviews
+      - Users cannot review their own listings
+      - One review per user per listing
+      
+      READY FOR COMPREHENSIVE BACKEND & FRONTEND TESTING
+      
+      Test Requirements:
+      1. Register new user → Select role (OWNER/CUSTOMER)
+      2. OWNER: Create profile → Add listing with Google Maps → View in dashboard
+      3. CUSTOMER: Browse listings → View detail → Post review
+      4. Verify Google Maps button opens correctly
+      5. Verify role-based access (customers can't add listings, owners can)
+      6. Verify JWT authentication on all API calls
+      7. Test both owner and customer user flows completely
