@@ -186,7 +186,9 @@ export default function LandingPage() {
                   'Flexible rental durations - night, week, or month',
                   'Verified listings with detailed information',
                   'Easy-to-use search and filter options',
-                  'Save your favorite properties for later'
+                  'Save your favorite properties for later',
+                  'Direct contact with verified property owners',
+                  'Transparent pricing with no hidden fees'
                 ].map((feature, index) => (
                   <li key={index} className="flex items-start">
                     <div className="flex-shrink-0 h-6 w-6 rounded-full mr-3 flex items-center justify-center" style={{ backgroundColor: '#10B981' }}>
@@ -201,7 +203,7 @@ export default function LandingPage() {
             </div>
             <div className="relative h-96 bg-gray-200 rounded-2xl overflow-hidden shadow-xl">
               <img
-                src="https://via.placeholder.com/600x400/2563EB/FFFFFF?text=Happy+Renters"
+                src="https://images.unsplash.com/photo-1560518883-ce09059eeffa?w=600&h=400&fit=crop"
                 alt="Happy renters"
                 className="w-full h-full object-cover"
               />
