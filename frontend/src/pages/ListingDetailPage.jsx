@@ -8,28 +8,17 @@ import { Badge } from '@/components/ui/badge';
 import { ArrowLeft, Heart, MapPin, Bed, Bath, Maximize, CheckCircle2 } from 'lucide-react';
 import { addFavorite, removeFavorite, isFavorite } from '@/utils/localStorage';
 
-const getTypeColor = (type) => {
-  const colors = {
-    room: '#2563EB',
-    house: '#10B981',
-    lodge: '#1F2937'
-  };
-  return colors[type] || '#1F2937';
-};
-
 export default function ListingDetailPage() {
   const { id } = useParams();
   const navigate = useNavigate();
-  const [listing, setListing] = useState(null);
+  const listing = mockListings.find(l => l.id === parseInt(id));
   const [favorite, setFavorite] = useState(false);
 
   useEffect(() => {
-    const found = mockListings.find(l => l.id === parseInt(id));
-    if (found) {
-      setListing(found);
-      setFavorite(isFavorite(found.id));
+    if (listing) {
+      setFavorite(isFavorite(listing.id));
     }
-  }, [id]);
+  }, [listing]);
 
   const toggleFavorite = () => {
     if (listing) {
@@ -50,6 +39,11 @@ export default function ListingDetailPage() {
       </div>
     );
   }
+
+  let typeColor = '#1F2937';
+  if (listing.type === 'room') typeColor = '#2563EB';
+  if (listing.type === 'house') typeColor = '#10B981';
+  if (listing.type === 'lodge') typeColor = '#1F2937';
 
   return (
     <div className="min-h-screen" style={{ backgroundColor: '#F9FAFB' }}>
@@ -76,7 +70,7 @@ export default function ListingDetailPage() {
                 />
                 <Badge
                   className="absolute top-4 left-4 text-sm px-3 py-1"
-                  style={{ backgroundColor: getTypeColor(listing.type), color: 'white' }}
+                  style={{ backgroundColor: typeColor, color: 'white' }}
                   data-testid="listing-detail-type-badge"
                 >
                   {listing.type.toUpperCase()}
