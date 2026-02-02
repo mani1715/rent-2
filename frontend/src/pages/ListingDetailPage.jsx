@@ -18,7 +18,7 @@ export default function ListingDetailPage() {
     if (listing) {
       setFavorite(isFavorite(listing.id));
     }
-  }, [listing]);
+  }, [listing?.id]);
 
   const toggleFavorite = () => {
     if (listing) {
