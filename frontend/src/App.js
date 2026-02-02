@@ -4,7 +4,6 @@ import { Navbar } from "@/components/Navbar";
 import { Footer } from "@/components/Footer";
 import LandingPage from "@/pages/LandingPage";
 import ListingsPage from "@/pages/ListingsPage";
-import ListingDetailPage from "@/pages/ListingDetailPage";
 import AddListingPage from "@/pages/AddListingPage";
 import FavoritesPage from "@/pages/FavoritesPage";
 
@@ -17,7 +16,7 @@ function App() {
           <Routes>
             <Route path="/" element={<LandingPage />} />
             <Route path="/listings" element={<ListingsPage />} />
-            <Route path="/listing/:id" element={<ListingDetailPage />} />
+            <Route path="/listing/:id" element={<div className="p-8">Detail page loading...</div>} />
             <Route path="/add-listing" element={<AddListingPage />} />
             <Route path="/favorites" element={<FavoritesPage />} />
           </Routes>
