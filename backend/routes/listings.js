@@ -15,10 +15,10 @@ router.post(
     requireRole,
     requireOwner,
     body('title').trim().notEmpty().withMessage('Title is required'),
-    body('type').isIn(['room', 'house', 'lodge']).withMessage('Type must be room, house, or lodge'),
+    body('type').isIn(['room', 'house', 'lodge', 'pg', 'hostel']).withMessage('Type must be room, house, lodge, pg, or hostel'),
     body('price').isNumeric().withMessage('Price must be a number'),
     body('squareFeet').isNumeric().withMessage('Square feet must be a number'),
-    body('location').trim().notEmpty().withMessage('Location is required')
+    body('addressText').trim().notEmpty().withMessage('Address is required')
   ],
   async (req, res) => {
     try {
@@ -74,13 +74,13 @@ router.get('/', async (req, res) => {
       if (maxPrice) query.price.$lte = Number(maxPrice);
     }
     if (location) {
-      query.location = { $regex: location, $options: 'i' };
+      query.addressText = { $regex: location, $options: 'i' };
     }
     if (search) {
       query.$or = [
         { title: { $regex: search, $options: 'i' } },
         { description: { $regex: search, $options: 'i' } },
-        { location: { $regex: search, $options: 'i' } }
+        { addressText: { $regex: search, $options: 'i' } }
       ];
     }
 

@@ -14,7 +14,7 @@ const listingSchema = new mongoose.Schema({
   type: {
     type: String,
     required: [true, 'Type is required'],
-    enum: ['room', 'house', 'lodge']
+    enum: ['room', 'house', 'lodge', 'pg', 'hostel']
   },
   price: {
     type: Number,
@@ -30,10 +30,19 @@ const listingSchema = new mongoose.Schema({
     type: [String],
     default: []
   },
-  location: {
+  addressText: {
     type: String,
-    required: [true, 'Location is required'],
+    required: [true, 'Address is required'],
     trim: true
+  },
+  latitude: {
+    type: Number
+  },
+  longitude: {
+    type: Number
+  },
+  googleMapsLink: {
+    type: String
   },
   images: {
     type: [String],
