@@ -8,6 +8,15 @@ import { Badge } from '@/components/ui/badge';
 import { ArrowLeft, Heart, MapPin, Bed, Bath, Maximize, CheckCircle2 } from 'lucide-react';
 import { addFavorite, removeFavorite, isFavorite } from '@/utils/localStorage';
 
+const getTypeColor = (type) => {
+  const colors = {
+    room: '#2563EB',
+    house: '#10B981',
+    lodge: '#1F2937'
+  };
+  return colors[type] || '#1F2937';
+};
+
 export default function ListingDetailPage() {
   const { id } = useParams();
   const navigate = useNavigate();
@@ -23,12 +32,14 @@ export default function ListingDetailPage() {
   }, [id]);
 
   const toggleFavorite = () => {
-    if (favorite) {
-      removeFavorite(listing.id);
-      setFavorite(false);
-    } else {
-      addFavorite(listing.id);
-      setFavorite(true);
+    if (listing) {
+      if (favorite) {
+        removeFavorite(listing.id);
+        setFavorite(false);
+      } else {
+        addFavorite(listing.id);
+        setFavorite(true);
+      }
     }
   };
 
@@ -39,19 +50,6 @@ export default function ListingDetailPage() {
       </div>
     );
   }
-
-  const getTypeColor = () => {
-    switch (listing.type) {
-      case 'room':
-        return '#2563EB';
-      case 'house':
-        return '#10B981';
-      case 'lodge':
-        return '#1F2937';
-      default:
-        return '#1F2937';
-    }
-  };
 
   return (
     <div className="min-h-screen" style={{ backgroundColor: '#F9FAFB' }}>
