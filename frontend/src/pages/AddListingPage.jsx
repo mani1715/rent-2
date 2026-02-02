@@ -309,6 +309,168 @@ export default function AddListingPage() {
                 </div>
               </>
             )}
+
+            {step === 5 && (
+              <div>
+                <Label className="text-base font-semibold mb-3 block" style={{ color: '#1F2937' }}>
+                  Property Photos * (Max 10)
+                </Label>
+                <p className="text-sm text-gray-600 mb-4">
+                  Upload high-quality photos of your property. First photo will be the cover image.
+                </p>
+
+                {uploadedImages.length < 10 && (
+                  <div className="mb-4">
+                    <label 
+                      htmlFor="image-upload" 
+                      className="flex flex-col items-center justify-center w-full h-48 border-2 border-dashed border-gray-300 rounded-lg cursor-pointer hover:border-blue-500 transition-colors"
+                      style={{ backgroundColor: '#F9FAFB' }}
+                    >
+                      <div className="flex flex-col items-center justify-center pt-5 pb-6">
+                        <Upload className="h-12 w-12 mb-3 text-gray-400" />
+                        <p className="mb-2 text-sm text-gray-600">
+                          <span className="font-semibold">Click to upload</span> or drag and drop
+                        </p>
+                        <p className="text-xs text-gray-500">PNG, JPG, JPEG (MAX. 10MB)</p>
+                      </div>
+                      <input 
+                        id="image-upload" 
+                        type="file" 
+                        className="hidden" 
+                        accept="image/*"
+                        multiple
+                        onChange={handleImageUpload}
+                        data-testid="image-upload-input"
+                      />
+                    </label>
+                  </div>
+                )}
+
+                {uploadedImages.length > 0 && (
+                  <div>
+                    <p className="text-sm text-gray-600 mb-3">{uploadedImages.length} image(s) uploaded</p>
+                    <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
+                      {uploadedImages.map((image, index) => (
+                        <div key={image.id} className="relative group">
+                          <div className="relative aspect-square rounded-lg overflow-hidden border-2 border-gray-200">
+                            <img 
+                              src={image.url} 
+                              alt={`Upload ${index + 1}`}
+                              className="w-full h-full object-cover"
+                            />
+                            {index === 0 && (
+                              <div className="absolute top-2 left-2">
+                                <span className="bg-blue-600 text-white text-xs px-2 py-1 rounded">
+                                  Cover
+                                </span>
+                              </div>
+                            )}
+                            <button
+                              onClick={() => removeImage(image.id)}
+                              className="absolute top-2 right-2 bg-red-500 text-white p-1 rounded-full opacity-0 group-hover:opacity-100 transition-opacity"
+                              data-testid={`remove-image-${index}`}
+                            >
+                              <X className="h-4 w-4" />
+                            </button>
+                          </div>
+                          <p className="text-xs text-gray-500 mt-1 truncate">{image.name}</p>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                )}
+              </div>
+            )}
+
+            {step === 6 && (
+              <div className="space-y-6">
+                <div className="text-center mb-6">
+                  <ImageIcon className="h-16 w-16 mx-auto mb-4 text-gray-400" />
+                  <h3 className="text-xl font-semibold mb-2" style={{ color: '#1F2937' }}>
+                    Review Your Listing
+                  </h3>
+                  <p className="text-gray-600">
+                    Please review all information before publishing
+                  </p>
+                </div>
+
+                <div className="space-y-4">
+                  <div className="bg-gray-50 p-4 rounded-lg">
+                    <h4 className="font-semibold mb-2" style={{ color: '#1F2937' }}>Property Type</h4>
+                    <p className="text-gray-700 capitalize">{formData.type} - {formData.duration}ly rental</p>
+                  </div>
+
+                  <div className="bg-gray-50 p-4 rounded-lg">
+                    <h4 className="font-semibold mb-2" style={{ color: '#1F2937' }}>Basic Information</h4>
+                    <p className="text-gray-700">{formData.title}</p>
+                    <p className="text-gray-600 text-sm">{formData.location}</p>
+                    <p className="text-lg font-bold mt-2" style={{ color: '#2563EB' }}>
+                      ${formData.price} / {formData.duration}
+                    </p>
+                  </div>
+
+                  <div className="bg-gray-50 p-4 rounded-lg">
+                    <h4 className="font-semibold mb-2" style={{ color: '#1F2937' }}>Property Details</h4>
+                    <div className="grid grid-cols-3 gap-4 text-sm">
+                      <div>
+                        <p className="text-gray-600">Bedrooms</p>
+                        <p className="font-semibold">{formData.bedrooms}</p>
+                      </div>
+                      <div>
+                        <p className="text-gray-600">Bathrooms</p>
+                        <p className="font-semibold">{formData.bathrooms}</p>
+                      </div>
+                      <div>
+                        <p className="text-gray-600">Size</p>
+                        <p className="font-semibold">{formData.size} sqft</p>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div className="bg-gray-50 p-4 rounded-lg">
+                    <h4 className="font-semibold mb-2" style={{ color: '#1F2937' }}>Description</h4>
+                    <p className="text-gray-700 text-sm">{formData.description}</p>
+                  </div>
+
+                  {formData.features.length > 0 && (
+                    <div className="bg-gray-50 p-4 rounded-lg">
+                      <h4 className="font-semibold mb-2" style={{ color: '#1F2937' }}>Features</h4>
+                      <div className="flex flex-wrap gap-2">
+                        {formData.features.map((feature) => (
+                          <span 
+                            key={feature}
+                            className="px-3 py-1 bg-white rounded-full text-sm text-gray-700 border border-gray-200"
+                          >
+                            {feature}
+                          </span>
+                        ))}
+                      </div>
+                    </div>
+                  )}
+
+                  {uploadedImages.length > 0 && (
+                    <div className="bg-gray-50 p-4 rounded-lg">
+                      <h4 className="font-semibold mb-2" style={{ color: '#1F2937' }}>Photos ({uploadedImages.length})</h4>
+                      <div className="grid grid-cols-4 gap-2">
+                        {uploadedImages.slice(0, 4).map((image, index) => (
+                          <img 
+                            key={image.id}
+                            src={image.url} 
+                            alt={`Preview ${index + 1}`}
+                            className="w-full h-20 object-cover rounded"
+                          />
+                        ))}
+                        {uploadedImages.length > 4 && (
+                          <div className="w-full h-20 bg-gray-200 rounded flex items-center justify-center">
+                            <span className="text-sm text-gray-600">+{uploadedImages.length - 4} more</span>
+                          </div>
+                        )}
+                      </div>
+                    </div>
+                  )}
+                </div>
+              </div>
+            )}
           </CardContent>
         </Card>
 
