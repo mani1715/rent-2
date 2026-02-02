@@ -131,12 +131,12 @@ export default function ListingDetailPage() {
                   <div className="flex items-center">
                     <Bed className="h-5 w-5 mr-2 text-gray-600" />
                     <span className="font-semibold" data-testid="listing-detail-bedrooms">{listing.bedrooms}</span>
-                    <span className="text-gray-600 ml-1">Bedrooms</span>
+                    <span className="text-gray-600 ml-1">Bed{listing.bedrooms > 1 ? 's' : ''}</span>
                   </div>
                   <div className="flex items-center">
                     <Bath className="h-5 w-5 mr-2 text-gray-600" />
                     <span className="font-semibold" data-testid="listing-detail-bathrooms">{listing.bathrooms}</span>
-                    <span className="text-gray-600 ml-1">Bathrooms</span>
+                    <span className="text-gray-600 ml-1">Bath{listing.bathrooms > 1 ? 's' : ''}</span>
                   </div>
                   <div className="flex items-center">
                     <Maximize className="h-5 w-5 mr-2 text-gray-600" />
@@ -151,11 +151,11 @@ export default function ListingDetailPage() {
                 </div>
 
                 <div>
-                  <h2 className="text-xl font-semibold mb-3" style={{ color: '#1F2937' }}>Features & Amenities</h2>
+                  <h2 className="text-xl font-semibold mb-3" style={{ color: '#1F2937' }}>Amenities & Features</h2>
                   <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
                     {listing.features.map((feature, idx) => (
                       <div key={idx} className="flex items-center" data-testid={`feature-${idx}`}>
-                        <CheckCircle2 className="h-5 w-5 mr-2" style={{ color: '#10B981' }} />
+                        <CheckCircle2 className="h-5 w-5 mr-2 flex-shrink-0" style={{ color: '#10B981' }} />
                         <span className="text-gray-700">{feature}</span>
                       </div>
                     ))}
@@ -164,46 +164,22 @@ export default function ListingDetailPage() {
               </CardContent>
             </Card>
 
+            <ReviewsSection 
+              reviews={listing.reviews}
+              rating={listing.rating}
+              reviewCount={listing.reviewCount}
+            />
+
             <MapPreview coordinates={listing.coordinates} location={listing.location} />
           </div>
 
-          <div className="lg:col-span-1">
-            <Card className="sticky top-24">
-              <CardContent className="p-6">
-                <div className="mb-6">
-                  <p className="text-gray-600 mb-2">Price</p>
-                  <div className="flex items-baseline">
-                    <span className="text-4xl font-bold" style={{ color: '#2563EB' }} data-testid="listing-detail-price">${listing.price}</span>
-                    <span className="text-xl text-gray-600 ml-2">/ {listing.duration}</span>
-                  </div>
-                </div>
-
-                <div className="space-y-3">
-                  <Button className="w-full" size="lg" style={{ backgroundColor: '#10B981', color: 'white' }} data-testid="contact-owner-button">Contact Owner</Button>
-                  <Button variant="outline" className="w-full" size="lg" data-testid="schedule-visit-button">Schedule Visit</Button>
-                </div>
-
-                <div className="mt-6 pt-6 border-t border-gray-200">
-                  <h3 className="font-semibold mb-3" style={{ color: '#1F2937' }}>Property Details</h3>
-                  <div className="space-y-2 text-sm">
-                    <div className="flex justify-between">
-                      <span className="text-gray-600">Type:</span>
-                      <span className="font-medium capitalize">{listing.type}</span>
-                    </div>
-                    <div className="flex justify-between">
-                      <span className="text-gray-600">Mode:</span>
-                      <span className="font-medium capitalize">{listing.mode}</span>
-                    </div>
-                    <div className="flex justify-between">
-                      <span className="text-gray-600">Size:</span>
-                      <span className="font-medium">{listing.size} sqft</span>
-                    </div>
-                  </div>
-                </div>
-              </CardContent>
-            </Card>
+          <div className="lg:col-span-1 space-y-6">
+            <OwnerProfileCard owner={listing.owner} />
+            <AvailabilityCalendar availability={listing.availability} />
           </div>
         </div>
+
+        <SimilarListings currentListingId={listing.id} type={listing.type} />
       </div>
     </div>
   );
