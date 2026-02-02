@@ -90,11 +90,11 @@ export default function AddListingPage() {
           <h1 className="text-3xl font-bold mb-2" style={{ color: '#1F2937' }} data-testid="add-listing-title">
             List Your Property
           </h1>
-          <p className="text-gray-600">Step {step} of 4</p>
+          <p className="text-gray-600">Step {step} of 6</p>
           <div className="mt-4 h-2 bg-gray-200 rounded-full">
             <div
               className="h-full rounded-full transition-all duration-300"
-              style={{ backgroundColor: '#2563EB', width: `${(step / 4) * 100}%` }}
+              style={{ backgroundColor: '#2563EB', width: `${(step / 6) * 100}%` }}
             />
           </div>
         </div>
@@ -106,11 +106,12 @@ export default function AddListingPage() {
               {step === 2 && 'Basic Information'}
               {step === 3 && 'Property Details'}
               {step === 4 && 'Description & Features'}
+              {step === 5 && 'Upload Photos'}
+              {step === 6 && 'Review & Publish'}
             </CardTitle>
           </CardHeader>
 
-          <CardContent className="space-y-6">
-            {step === 1 && (
+          <CardContent className="space-y-6">{step === 1 && (
               <>
                 <div>
                   <Label className="text-base font-semibold mb-3 block" style={{ color: '#1F2937' }}>
