@@ -1,0 +1,116 @@
+import { Link, useNavigate } from 'react-router-dom';
+import { useState } from 'react';
+import { Search, Heart, Home, Menu, X } from 'lucide-react';
+import { Button } from '@/components/ui/button';
+import { Input } from '@/components/ui/input';
+
+export const Navbar = () => {
+  const navigate = useNavigate();
+  const [searchQuery, setSearchQuery] = useState('');
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+
+  const handleSearch = (e) => {
+    e.preventDefault();
+    if (searchQuery.trim()) {
+      navigate(`/listings?search=${encodeURIComponent(searchQuery)}`);
+      setSearchQuery('');
+      setMobileMenuOpen(false);
+    }
+  };
+
+  return (
+    <nav className="bg-white border-b border-gray-200 sticky top-0 z-50 shadow-sm">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="flex justify-between items-center h-16">
+          <Link to="/" className="flex items-center space-x-2" data-testid="navbar-logo">
+            <Home className="h-8 w-8" style={{ color: '#2563EB' }} />
+            <span className="text-xl font-bold" style={{ color: '#1F2937' }}>RentSpace</span>
+          </Link>
+
+          <form onSubmit={handleSearch} className="hidden md:flex flex-1 max-w-md mx-8">
+            <div className="relative w-full">
+              <Input
+                type="text"
+                placeholder="Search by location or property type..."
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
+                className="pr-10"
+                data-testid="navbar-search-input"
+              />
+              <button
+                type="submit"
+                className="absolute right-2 top-1/2 -translate-y-1/2"
+                data-testid="navbar-search-button"
+              >
+                <Search className="h-5 w-5 text-gray-400" />
+              </button>
+            </div>
+          </form>
+
+          <div className="hidden md:flex items-center space-x-4">
+            <Link to="/listings" data-testid="navbar-listings-link">
+              <Button variant="ghost" style={{ color: '#1F2937' }}>
+                Browse
+              </Button>
+            </Link>
+            <Link to="/favorites" data-testid="navbar-favorites-link">
+              <Button variant="ghost" style={{ color: '#1F2937' }}>
+                <Heart className="h-5 w-5 mr-2" />
+                Favorites
+              </Button>
+            </Link>
+            <Link to="/add-listing" data-testid="navbar-add-listing-link">
+              <Button style={{ backgroundColor: '#2563EB', color: 'white' }}>
+                List Property
+              </Button>
+            </Link>
+          </div>
+
+          <button
+            className="md:hidden"
+            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+            data-testid="navbar-mobile-menu-button"
+          >
+            {mobileMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
+          </button>
+        </div>
+
+        {mobileMenuOpen && (
+          <div className="md:hidden py-4 space-y-4" data-testid="navbar-mobile-menu">
+            <form onSubmit={handleSearch} className="w-full">
+              <div className="relative">
+                <Input
+                  type="text"
+                  placeholder="Search..."
+                  value={searchQuery}
+                  onChange={(e) => setSearchQuery(e.target.value)}
+                  className="pr-10"
+                  data-testid="navbar-mobile-search-input"
+                />
+                <button type="submit" className="absolute right-2 top-1/2 -translate-y-1/2">
+                  <Search className="h-5 w-5 text-gray-400" />
+                </button>
+              </div>
+            </form>
+            <Link to="/listings" onClick={() => setMobileMenuOpen(false)} className="block">
+              <Button variant="ghost" className="w-full justify-start" data-testid="navbar-mobile-listings-link">
+                Browse
+              </Button>
+            </Link>
+            <Link to="/favorites" onClick={() => setMobileMenuOpen(false)} className="block">
+              <Button variant="ghost" className="w-full justify-start" data-testid="navbar-mobile-favorites-link">
+                <Heart className="h-5 w-5 mr-2" />
+                Favorites
+              </Button>
+            </Link>
+            <Link to="/add-listing" onClick={() => setMobileMenuOpen(false)} className="block">
+              <Button className="w-full" style={{ backgroundColor: '#2563EB', color: 'white' }} data-testid="navbar-mobile-add-listing-link">
+                List Property
+              </Button>
+            </Link>
+          </div>
+        )}
+      </div>
+    </nav>
+  );
+};
