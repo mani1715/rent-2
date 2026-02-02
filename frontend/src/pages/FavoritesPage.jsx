@@ -3,14 +3,23 @@ import { mockListings } from '@/data/mockListings';
 import { getFavorites } from '@/utils/localStorage';
 import { ListingCard } from '@/components/ListingCard';
 import { Heart } from 'lucide-react';
+import { SkeletonList } from '@/components/SkeletonLoader';
 
 export default function FavoritesPage() {
   const [favoriteListings, setFavoriteListings] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    const favoriteIds = getFavorites();
-    const favorites = mockListings.filter(listing => favoriteIds.includes(listing.id));
-    setFavoriteListings(favorites);
+    // Simulate loading for skeleton
+    setLoading(true);
+    const timer = setTimeout(() => {
+      const favoriteIds = getFavorites();
+      const favorites = mockListings.filter(listing => favoriteIds.includes(listing.id));
+      setFavoriteListings(favorites);
+      setLoading(false);
+    }, 600);
+
+    return () => clearTimeout(timer);
   }, []);
 
   useEffect(() => {
