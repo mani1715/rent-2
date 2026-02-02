@@ -30,6 +30,14 @@ export default function ListingsPage() {
     if (search) {
       // Search is handled in the filtering logic
     }
+
+    // Simulate loading for skeleton
+    setLoading(true);
+    const timer = setTimeout(() => {
+      setLoading(false);
+    }, 800);
+
+    return () => clearTimeout(timer);
   }, [searchParams]);
 
   const filteredListings = mockListings.filter(listing => {
