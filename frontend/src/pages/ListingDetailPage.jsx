@@ -8,27 +8,32 @@ import { Badge } from '@/components/ui/badge';
 import { ArrowLeft, Heart, MapPin, Bed, Bath, Maximize, CheckCircle2 } from 'lucide-react';
 import { addFavorite, removeFavorite, isFavorite } from '@/utils/localStorage';
 
-export default function ListingDetailPage() {
+const ListingDetail = () => {
   const { id } = useParams();
   const navigate = useNavigate();
-  const listing = mockListings.find(l => l.id === parseInt(id));
   const [favorite, setFavorite] = useState(false);
+  
+  const listing = mockListings.find(l => l.id === parseInt(id));
 
   useEffect(() => {
-    if (listing) {
-      setFavorite(isFavorite(listing.id));
+    const listingId = parseInt(id);
+    const found = mockListings.find(l => l.id === listingId);
+    if (found) {
+      setFavorite(isFavorite(found.id));
     }
-  }, [listing?.id]);
+  }, [id]);
 
-  const toggleFavorite = () => {
-    if (listing) {
+  const handleToggleFavorite = () => {
+    const listingId = parseInt(id);
+    const found = mockListings.find(l => l.id === listingId);
+    
+    if (found) {
       if (favorite) {
-        removeFavorite(listing.id);
-        setFavorite(false);
+        removeFavorite(found.id);
       } else {
-        addFavorite(listing.id);
-        setFavorite(true);
+        addFavorite(found.id);
       }
+      setFavorite(!favorite);
     }
   };
 
@@ -40,10 +45,8 @@ export default function ListingDetailPage() {
     );
   }
 
-  let typeColor = '#1F2937';
-  if (listing.type === 'room') typeColor = '#2563EB';
-  if (listing.type === 'house') typeColor = '#10B981';
-  if (listing.type === 'lodge') typeColor = '#1F2937';
+  const typeColorMap = { room: '#2563EB', house: '#10B981', lodge: '#1F2937' };
+  const badgeColor = typeColorMap[listing.type] || '#1F2937';
 
   return (
     <div className="min-h-screen" style={{ backgroundColor: '#F9FAFB' }}>
@@ -70,7 +73,7 @@ export default function ListingDetailPage() {
                 />
                 <Badge
                   className="absolute top-4 left-4 text-sm px-3 py-1"
-                  style={{ backgroundColor: typeColor, color: 'white' }}
+                  style={{ backgroundColor: badgeColor, color: 'white' }}
                   data-testid="listing-detail-type-badge"
                 >
                   {listing.type.toUpperCase()}
@@ -89,13 +92,11 @@ export default function ListingDetailPage() {
                     </div>
                   </div>
                   <button
-                    onClick={toggleFavorite}
+                    onClick={handleToggleFavorite}
                     className="p-3 rounded-full bg-gray-100 hover:bg-gray-200 transition-colors"
                     data-testid="listing-detail-favorite-button"
                   >
-                    <Heart
-                      className={`h-6 w-6 ${favorite ? 'fill-red-500 text-red-500' : 'text-gray-600'}`}
-                    />
+                    <Heart className={`h-6 w-6 ${favorite ? 'fill-red-500 text-red-500' : 'text-gray-600'}`} />
                   </button>
                 </div>
 
@@ -203,4 +204,6 @@ export default function ListingDetailPage() {
       </div>
     </div>
   );
-}
+};
+
+export default ListingDetail;
