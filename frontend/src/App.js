@@ -7,6 +7,7 @@ import ListingsPage from "@/pages/ListingsPage";
 import ListingDetailPage from "@/pages/ListingDetailPage";
 import AddListingPage from "@/pages/AddListingPage";
 import FavoritesPage from "@/pages/FavoritesPage";
+import HowItWorksPage from "@/pages/HowItWorksPage";
 
 function App() {
   return (
@@ -20,6 +21,7 @@ function App() {
             <Route path="/listing/:id" element={<ListingDetailPage />} />
             <Route path="/add-listing" element={<AddListingPage />} />
             <Route path="/favorites" element={<FavoritesPage />} />
+            <Route path="/how-it-works" element={<HowItWorksPage />} />
           </Routes>
         </main>
         <Footer />
