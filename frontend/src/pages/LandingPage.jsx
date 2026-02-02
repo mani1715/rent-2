@@ -1,7 +1,10 @@
-import { useNavigate } from 'react-router-dom';
-import { ArrowRight, Home, Building2, Mountain } from 'lucide-react';
+import { useNavigate, Link } from 'react-router-dom';
+import { ArrowRight, Home, Building2, Mountain, Shield, Star, Users } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
+import { HeroSearch } from '@/components/HeroSearch';
+import { mockListings } from '@/data/mockListings';
+import { ListingCard } from '@/components/ListingCard';
 
 export default function LandingPage() {
   const navigate = useNavigate();
@@ -27,37 +30,36 @@ export default function LandingPage() {
     }
   ];
 
+  const featuredListings = mockListings.filter(listing => listing.featured).slice(0, 3);
+
+  const stats = [
+    { value: '15+', label: 'Properties Listed' },
+    { value: '100%', label: 'Verified Owners' },
+    { value: '4.8', label: 'Average Rating' }
+  ];
+
   return (
     <div className="min-h-screen" style={{ backgroundColor: '#F9FAFB' }}>
       <section className="relative py-20 px-4 sm:px-6 lg:px-8" style={{ backgroundColor: '#1F2937' }}>
-        <div className="max-w-7xl mx-auto text-center">
-          <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-white mb-6" data-testid="landing-hero-title">
-            Find Your Perfect Rental Space
-          </h1>
-          <p className="text-lg sm:text-xl text-gray-300 mb-8 max-w-2xl mx-auto" data-testid="landing-hero-subtitle">
-            Discover rooms, houses, and lodges for short or long-term stays. Your next home is just a click away.
-          </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Button
-              size="lg"
-              onClick={() => navigate('/listings')}
-              style={{ backgroundColor: '#2563EB', color: 'white' }}
-              className="text-lg px-8 py-6"
-              data-testid="landing-browse-listings-button"
-            >
-              Browse Listings
-              <ArrowRight className="ml-2 h-5 w-5" />
-            </Button>
-            <Button
-              size="lg"
-              variant="outline"
-              onClick={() => navigate('/add-listing')}
-              className="text-lg px-8 py-6 bg-white"
-              style={{ color: '#1F2937' }}
-              data-testid="landing-list-property-button"
-            >
-              List Your Property
-            </Button>
+        <div className="max-w-7xl mx-auto">
+          <div className="text-center mb-12">
+            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-white mb-6" data-testid="landing-hero-title">
+              Find Your Perfect Rental Space
+            </h1>
+            <p className="text-lg sm:text-xl text-gray-300 max-w-2xl mx-auto" data-testid="landing-hero-subtitle">
+              Discover rooms, houses, and lodges for short or long-term stays. Your next home is just a click away.
+            </p>
+          </div>
+          
+          <HeroSearch />
+
+          <div className="mt-12 grid grid-cols-3 gap-8 max-w-2xl mx-auto">
+            {stats.map((stat, index) => (
+              <div key={index} className="text-center">
+                <div className="text-3xl sm:text-4xl font-bold text-white mb-2">{stat.value}</div>
+                <div className="text-sm text-gray-400">{stat.label}</div>
+              </div>
+            ))}
           </div>
         </div>
       </section>
