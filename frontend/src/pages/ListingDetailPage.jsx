@@ -9,18 +9,30 @@ import { ArrowLeft, Heart, MapPin, Bed, Bath, Maximize, CheckCircle2 } from 'luc
 import { addFavorite, removeFavorite, isFavorite } from '@/utils/localStorage';
 
 export default function ListingDetailPage() {
-  const { id } = useParams();
+  const params = useParams();
   const navigate = useNavigate();
-  const listing = mockListings.find(l => l.id === parseInt(id));
-  const [favorite, setFavorite] = useState(listing ? isFavorite(listing.id) : false);
+  
+  const targetId = parseInt(params.id);
+  let foundListing = null;
+  
+  for (let i = 0; i < mockListings.length; i++) {
+    if (mockListings[i].id === targetId) {
+      foundListing = mockListings[i];
+      break;
+    }
+  }
 
-  if (!listing) {
+  const [favorite, setFavorite] = useState(foundListing ? isFavorite(foundListing.id) : false);
+
+  if (!foundListing) {
     return (
       <div className="min-h-screen flex items-center justify-center" style={{ backgroundColor: '#F9FAFB' }}>
         <p className="text-xl text-gray-600">Property not found</p>
       </div>
     );
   }
+
+  const listing = foundListing;
 
   const handleFavorite = () => {
     if (favorite) {
