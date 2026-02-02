@@ -8,36 +8,34 @@ import { Badge } from '@/components/ui/badge';
 import { ArrowLeft, Heart, MapPin, Bed, Bath, Maximize, CheckCircle2 } from 'lucide-react';
 import { addFavorite, removeFavorite, isFavorite } from '@/utils/localStorage';
 
-const ListingDetail = () => {
-  const { id } = useParams();
+function ListingDetailPage() {
+  const params = useParams();
   const navigate = useNavigate();
   const [favorite, setFavorite] = useState(false);
   
-  const listing = mockListings.find(l => l.id === parseInt(id));
+  const listingId = parseInt(params.id);
+  const currentListing = mockListings.find(item => item.id === listingId);
 
   useEffect(() => {
-    const listingId = parseInt(id);
-    const found = mockListings.find(l => l.id === listingId);
-    if (found) {
-      setFavorite(isFavorite(found.id));
+    if (currentListing) {
+      const isFav = isFavorite(currentListing.id);
+      setFavorite(isFav);
     }
-  }, [id]);
+  }, [currentListing]);
 
-  const handleToggleFavorite = () => {
-    const listingId = parseInt(id);
-    const found = mockListings.find(l => l.id === listingId);
-    
-    if (found) {
+  function handleFavoriteClick() {
+    if (currentListing) {
       if (favorite) {
-        removeFavorite(found.id);
+        removeFavorite(currentListing.id);
+        setFavorite(false);
       } else {
-        addFavorite(found.id);
+        addFavorite(currentListing.id);
+        setFavorite(true);
       }
-      setFavorite(!favorite);
     }
-  };
+  }
 
-  if (!listing) {
+  if (!currentListing) {
     return (
       <div className="min-h-screen flex items-center justify-center" style={{ backgroundColor: '#F9FAFB' }}>
         <p className="text-xl text-gray-600">Property not found</p>
@@ -45,18 +43,14 @@ const ListingDetail = () => {
     );
   }
 
-  const typeColorMap = { room: '#2563EB', house: '#10B981', lodge: '#1F2937' };
-  const badgeColor = typeColorMap[listing.type] || '#1F2937';
+  let badgeColor = '#1F2937';
+  if (currentListing.type === 'room') badgeColor = '#2563EB';
+  else if (currentListing.type === 'house') badgeColor = '#10B981';
 
   return (
     <div className="min-h-screen" style={{ backgroundColor: '#F9FAFB' }}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-        <Button
-          variant="ghost"
-          onClick={() => navigate(-1)}
-          className="mb-6"
-          data-testid="back-button"
-        >
+        <Button variant="ghost" onClick={() => navigate(-1)} className="mb-6" data-testid="back-button">
           <ArrowLeft className="h-5 w-5 mr-2" />
           Back to Listings
         </Button>
@@ -66,8 +60,8 @@ const ListingDetail = () => {
             <Card className="overflow-hidden">
               <div className="relative">
                 <img
-                  src={listing.images[0]}
-                  alt={listing.title}
+                  src={currentListing.images[0]}
+                  alt={currentListing.title}
                   className="w-full h-96 object-cover"
                   data-testid="listing-detail-image"
                 />
@@ -76,7 +70,7 @@ const ListingDetail = () => {
                   style={{ backgroundColor: badgeColor, color: 'white' }}
                   data-testid="listing-detail-type-badge"
                 >
-                  {listing.type.toUpperCase()}
+                  {currentListing.type.toUpperCase()}
                 </Badge>
               </div>
 
@@ -84,15 +78,15 @@ const ListingDetail = () => {
                 <div className="flex items-start justify-between mb-4">
                   <div>
                     <h1 className="text-3xl font-bold mb-2" style={{ color: '#1F2937' }} data-testid="listing-detail-title">
-                      {listing.title}
+                      {currentListing.title}
                     </h1>
                     <div className="flex items-center text-gray-600">
                       <MapPin className="h-5 w-5 mr-2" />
-                      <span data-testid="listing-detail-location">{listing.location}</span>
+                      <span data-testid="listing-detail-location">{currentListing.location}</span>
                     </div>
                   </div>
                   <button
-                    onClick={handleToggleFavorite}
+                    onClick={handleFavoriteClick}
                     className="p-3 rounded-full bg-gray-100 hover:bg-gray-200 transition-colors"
                     data-testid="listing-detail-favorite-button"
                   >
@@ -103,17 +97,17 @@ const ListingDetail = () => {
                 <div className="flex items-center gap-6 py-4 border-y border-gray-200 mb-6">
                   <div className="flex items-center">
                     <Bed className="h-5 w-5 mr-2 text-gray-600" />
-                    <span className="font-semibold" data-testid="listing-detail-bedrooms">{listing.bedrooms}</span>
+                    <span className="font-semibold" data-testid="listing-detail-bedrooms">{currentListing.bedrooms}</span>
                     <span className="text-gray-600 ml-1">Bedrooms</span>
                   </div>
                   <div className="flex items-center">
                     <Bath className="h-5 w-5 mr-2 text-gray-600" />
-                    <span className="font-semibold" data-testid="listing-detail-bathrooms">{listing.bathrooms}</span>
+                    <span className="font-semibold" data-testid="listing-detail-bathrooms">{currentListing.bathrooms}</span>
                     <span className="text-gray-600 ml-1">Bathrooms</span>
                   </div>
                   <div className="flex items-center">
                     <Maximize className="h-5 w-5 mr-2 text-gray-600" />
-                    <span className="font-semibold" data-testid="listing-detail-size">{listing.size}</span>
+                    <span className="font-semibold" data-testid="listing-detail-size">{currentListing.size}</span>
                     <span className="text-gray-600 ml-1">sqft</span>
                   </div>
                 </div>
@@ -123,7 +117,7 @@ const ListingDetail = () => {
                     Description
                   </h2>
                   <p className="text-gray-700 leading-relaxed" data-testid="listing-detail-description">
-                    {listing.description}
+                    {currentListing.description}
                   </p>
                 </div>
 
@@ -132,7 +126,7 @@ const ListingDetail = () => {
                     Features & Amenities
                   </h2>
                   <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
-                    {listing.features.map((feature, index) => (
+                    {currentListing.features.map((feature, index) => (
                       <div key={index} className="flex items-center" data-testid={`feature-${index}`}>
                         <CheckCircle2 className="h-5 w-5 mr-2" style={{ color: '#10B981' }} />
                         <span className="text-gray-700">{feature}</span>
@@ -143,7 +137,7 @@ const ListingDetail = () => {
               </CardContent>
             </Card>
 
-            <MapPreview coordinates={listing.coordinates} location={listing.location} />
+            <MapPreview coordinates={currentListing.coordinates} location={currentListing.location} />
           </div>
 
           <div className="lg:col-span-1">
@@ -153,9 +147,9 @@ const ListingDetail = () => {
                   <p className="text-gray-600 mb-2">Price</p>
                   <div className="flex items-baseline">
                     <span className="text-4xl font-bold" style={{ color: '#2563EB' }} data-testid="listing-detail-price">
-                      ${listing.price}
+                      ${currentListing.price}
                     </span>
-                    <span className="text-xl text-gray-600 ml-2">/ {listing.duration}</span>
+                    <span className="text-xl text-gray-600 ml-2">/ {currentListing.duration}</span>
                   </div>
                 </div>
 
@@ -185,15 +179,15 @@ const ListingDetail = () => {
                   <div className="space-y-2 text-sm">
                     <div className="flex justify-between">
                       <span className="text-gray-600">Type:</span>
-                      <span className="font-medium capitalize">{listing.type}</span>
+                      <span className="font-medium capitalize">{currentListing.type}</span>
                     </div>
                     <div className="flex justify-between">
                       <span className="text-gray-600">Mode:</span>
-                      <span className="font-medium capitalize">{listing.mode}</span>
+                      <span className="font-medium capitalize">{currentListing.mode}</span>
                     </div>
                     <div className="flex justify-between">
                       <span className="text-gray-600">Size:</span>
-                      <span className="font-medium">{listing.size} sqft</span>
+                      <span className="font-medium">{currentListing.size} sqft</span>
                     </div>
                   </div>
                 </div>
@@ -204,6 +198,6 @@ const ListingDetail = () => {
       </div>
     </div>
   );
-};
+}
 
-export default ListingDetail;
+export default ListingDetailPage;
