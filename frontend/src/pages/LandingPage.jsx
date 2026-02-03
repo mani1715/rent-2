@@ -5,9 +5,11 @@ import { Card, CardContent } from '@/components/ui/card';
 import { HeroSearch } from '@/components/HeroSearch';
 import { mockListings } from '@/data/mockListings';
 import { ListingCard } from '@/components/ListingCard';
+import { useAuth } from '@/contexts/AuthContext';
 
 export default function LandingPage() {
   const navigate = useNavigate();
+  const { isAuthenticated } = useAuth();
 
   const propertyTypes = [
     {
@@ -76,7 +78,13 @@ export default function LandingPage() {
                 <Card
                   key={type.type}
                   className="hover:shadow-xl transition-all duration-300 cursor-pointer border-2 border-transparent hover:border-blue-500"
-                  onClick={() => navigate(`/listings?type=${type.type}`)}
+                  onClick={() => {
+                    if (!isAuthenticated) {
+                      navigate('/login');
+                      return;
+                    }
+                    navigate(`/listings?type=${type.type}`);
+                  }}
                   data-testid={`property-type-card-${type.type}`}
                 >
                   <CardContent className="p-8 text-center">
