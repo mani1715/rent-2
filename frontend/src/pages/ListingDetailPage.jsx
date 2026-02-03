@@ -434,6 +434,16 @@ export default function ListingDetailPage() {
           </div>
         </div>
       </div>
+      
+      {/* Chat Modal */}
+      {isAuthenticated && user?.role === 'CUSTOMER' && listing && (
+        <ChatModal
+          isOpen={chatOpen}
+          onClose={() => setChatOpen(false)}
+          ownerId={listing.ownerId?._id || listing.owner}
+          listingId={listing._id}
+        />
+      )}
     </div>
   );
 }
