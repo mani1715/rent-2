@@ -119,13 +119,23 @@ export const Navbar = () => {
                       <p className="text-xs text-blue-600 mt-1">{user?.role}</p>
                     </div>
                     {isOwner && (
-                      <Link
-                        to="/owner/dashboard"
-                        className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
-                        onClick={() => setUserMenuOpen(false)}
-                      >
-                        Dashboard
-                      </Link>
+                      <>
+                        <Link
+                          to="/owner/dashboard"
+                          className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+                          onClick={() => setUserMenuOpen(false)}
+                        >
+                          Dashboard
+                        </Link>
+                        <Link
+                          to="/owner/inbox"
+                          className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+                          onClick={() => setUserMenuOpen(false)}
+                        >
+                          <MessageCircle className="h-4 w-4 inline mr-2" />
+                          Messages
+                        </Link>
+                      </>
                     )}
                     <button
                       onClick={() => {
