@@ -185,17 +185,35 @@ export const Navbar = () => {
                 Browse
               </Button>
             </Link>
-            <Link to="/favorites" onClick={() => setMobileMenuOpen(false)} className="block">
-              <Button variant="ghost" className="w-full justify-start" data-testid="navbar-mobile-favorites-link">
-                <Heart className="h-5 w-5 mr-2" />
-                Favorites
-              </Button>
-            </Link>
-            <Link to="/add-listing" onClick={() => setMobileMenuOpen(false)} className="block">
-              <Button className="w-full" style={{ backgroundColor: '#2563EB', color: 'white' }} data-testid="navbar-mobile-add-listing-link">
-                List Property
-              </Button>
-            </Link>
+            {isAuthenticated && (
+              <Link to="/favorites" onClick={() => setMobileMenuOpen(false)} className="block">
+                <Button variant="ghost" className="w-full justify-start" data-testid="navbar-mobile-favorites-link">
+                  <Heart className="h-5 w-5 mr-2" />
+                  Favorites
+                </Button>
+              </Link>
+            )}
+            {isOwner && (
+              <>
+                <Link to="/owner/dashboard" onClick={() => setMobileMenuOpen(false)} className="block">
+                  <Button variant="ghost" className="w-full justify-start">
+                    <LayoutDashboard className="h-5 w-5 mr-2" />
+                    Dashboard
+                  </Button>
+                </Link>
+                <Link to="/owner/inbox" onClick={() => setMobileMenuOpen(false)} className="block">
+                  <Button variant="ghost" className="w-full justify-start">
+                    <MessageCircle className="h-5 w-5 mr-2" />
+                    Messages
+                  </Button>
+                </Link>
+                <Link to="/owner/add-listing" onClick={() => setMobileMenuOpen(false)} className="block">
+                  <Button className="w-full" style={{ backgroundColor: '#2563EB', color: 'white' }} data-testid="navbar-mobile-add-listing-link">
+                    List Property
+                  </Button>
+                </Link>
+              </>
+            )}
           </div>
         )}
       </div>
