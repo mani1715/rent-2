@@ -47,12 +47,13 @@ export const AuthProvider = ({ children }) => {
     checkAuth();
   }, []);
 
-  const register = async (name, email, password) => {
+  const register = async (name, email, password, role = null) => {
     try {
       const response = await axios.post(`${API_URL}/api/auth/register`, {
         name,
         email,
-        password
+        password,
+        role
       });
 
       if (response.data.success) {
