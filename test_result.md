@@ -571,6 +571,39 @@ test_plan:
 agent_communication:
   - agent: "main"
     message: |
+      ========== FIX APPLIED: LOGIN FLOW CORRECTED ==========
+      Date: Current session
+      
+      ISSUE IDENTIFIED:
+      - Role selection was being prompted on every login
+      - Owner needed direct access to add property form after login
+      - Customer needed direct access to listings page after login
+      
+      FIXES IMPLEMENTED:
+      1. Updated LoginPage.jsx - Now redirects based on user role:
+         - If role not set → /select-role (one-time only)
+         - If role = OWNER → /owner/dashboard
+         - If role = CUSTOMER → /listings
+      
+      2. Updated AuthContext.jsx - Login function now returns user data
+      
+      3. Updated RoleSelectionPage.jsx - After role selection:
+         - OWNER → Redirected to /owner/add-listing (to add first property)
+         - CUSTOMER → Redirected to /listings (to browse properties)
+      
+      FLOW NOW:
+      ✅ First Time Owner: Register → Select "Owner" → Add Property Page
+      ✅ Returning Owner Login: Login → Dashboard (with existing properties)
+      ✅ First Time Customer: Register → Select "Customer" → Listings Page
+      ✅ Returning Customer Login: Login → Listings Page
+      ✅ Role is saved permanently in database (cannot be changed)
+      
+      All properties added by owners are visible to customers in /listings page.
+      
+      =======================================================
+  
+  - agent: "main"
+    message: |
       FULL-STACK IMPLEMENTATION COMPLETE - ALL FEATURES IMPLEMENTED ✅
       
       BACKEND (Node.js + Express + MongoDB):
