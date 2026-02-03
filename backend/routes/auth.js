@@ -12,7 +12,8 @@ router.post(
   [
     body('name').trim().notEmpty().withMessage('Name is required'),
     body('email').isEmail().withMessage('Please provide a valid email'),
-    body('password').isLength({ min: 6 }).withMessage('Password must be at least 6 characters')
+    body('password').isLength({ min: 6 }).withMessage('Password must be at least 6 characters'),
+    body('role').optional().isIn(['OWNER', 'CUSTOMER']).withMessage('Invalid role')
   ],
   async (req, res) => {
     try {
@@ -24,7 +25,7 @@ router.post(
         });
       }
 
-      const { name, email, password } = req.body;
+      const { name, email, password, role } = req.body;
 
       // Check if user already exists
       let user = await User.findOne({ email });
@@ -35,11 +36,12 @@ router.post(
         });
       }
 
-      // Create new user
+      // Create new user with role if provided
       user = new User({
         name,
         email,
-        password
+        password,
+        role: role || null
       });
 
       await user.save();
@@ -61,7 +63,7 @@ router.post(
           email: user.email,
           role: user.role
         },
-        requiresRoleSelection: true
+        requiresRoleSelection: !user.role
       });
     } catch (error) {
       console.error('Registration error:', error);
