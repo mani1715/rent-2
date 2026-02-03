@@ -400,6 +400,13 @@ export default function ListingDetailPage() {
                     <Phone className="mr-2 h-4 w-4" />
                     Contact Owner
                   </Button>
+                  
+                  {/* Chat with Owner Button - Only show for customers */}
+                  {isAuthenticated && user?.role === 'CUSTOMER' && (
+                    <div className="mt-3">
+                      <ChatButton onClick={() => setChatOpen(true)} className="w-full" />
+                    </div>
+                  )}
                 </CardContent>
               </Card>
             )}
