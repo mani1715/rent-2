@@ -23,70 +23,80 @@ function App() {
     <div className="App min-h-screen flex flex-col">
       <BrowserRouter>
         <AuthProvider>
-          <Navbar />
-          <main className="flex-grow">
-            <Routes>
-              {/* Public Routes */}
-              <Route path="/" element={<LandingPage />} />
-              <Route path="/login" element={<LoginPage />} />
-              <Route path="/register" element={<RegisterPage />} />
-              <Route path="/listings" element={<ListingsPage />} />
-              <Route path="/how-it-works" element={<HowItWorksPage />} />
-              
-              {/* Protected Routes */}
-              <Route
-                path="/select-role"
-                element={
-                  <ProtectedRoute>
-                    <RoleSelectionPage />
-                  </ProtectedRoute>
-                }
-              />
-              <Route
-                path="/listing/:id"
-                element={
-                  <ProtectedRoute>
-                    <ListingDetailPage />
-                  </ProtectedRoute>
-                }
-              />
-              <Route
-                path="/favorites"
-                element={
-                  <ProtectedRoute>
-                    <FavoritesPage />
-                  </ProtectedRoute>
-                }
-              />
-              
-              {/* Owner Only Routes */}
-              <Route
-                path="/owner/dashboard"
-                element={
-                  <ProtectedRoute requireRole="OWNER">
-                    <OwnerDashboard />
-                  </ProtectedRoute>
-                }
-              />
-              <Route
-                path="/owner/profile"
-                element={
-                  <ProtectedRoute requireRole="OWNER">
-                    <OwnerProfilePage />
-                  </ProtectedRoute>
-                }
-              />
-              <Route
-                path="/owner/add-listing"
-                element={
-                  <ProtectedRoute requireRole="OWNER">
-                    <AddListingPageNew />
-                  </ProtectedRoute>
-                }
-              />
-            </Routes>
-          </main>
-          <Footer />
+          <SocketProvider>
+            <Navbar />
+            <main className="flex-grow">
+              <Routes>
+                {/* Public Routes */}
+                <Route path="/" element={<LandingPage />} />
+                <Route path="/login" element={<LoginPage />} />
+                <Route path="/register" element={<RegisterPage />} />
+                <Route path="/listings" element={<ListingsPage />} />
+                <Route path="/how-it-works" element={<HowItWorksPage />} />
+                
+                {/* Protected Routes */}
+                <Route
+                  path="/select-role"
+                  element={
+                    <ProtectedRoute>
+                      <RoleSelectionPage />
+                    </ProtectedRoute>
+                  }
+                />
+                <Route
+                  path="/listing/:id"
+                  element={
+                    <ProtectedRoute>
+                      <ListingDetailPage />
+                    </ProtectedRoute>
+                  }
+                />
+                <Route
+                  path="/favorites"
+                  element={
+                    <ProtectedRoute>
+                      <FavoritesPage />
+                    </ProtectedRoute>
+                  }
+                />
+                
+                {/* Owner Only Routes */}
+                <Route
+                  path="/owner/dashboard"
+                  element={
+                    <ProtectedRoute requireRole="OWNER">
+                      <OwnerDashboard />
+                    </ProtectedRoute>
+                  }
+                />
+                <Route
+                  path="/owner/profile"
+                  element={
+                    <ProtectedRoute requireRole="OWNER">
+                      <OwnerProfilePage />
+                    </ProtectedRoute>
+                  }
+                />
+                <Route
+                  path="/owner/add-listing"
+                  element={
+                    <ProtectedRoute requireRole="OWNER">
+                      <AddListingPageNew />
+                    </ProtectedRoute>
+                  }
+                />
+                <Route
+                  path="/owner/inbox"
+                  element={
+                    <ProtectedRoute requireRole="OWNER">
+                      <OwnerInboxPage />
+                    </ProtectedRoute>
+                  }
+                />
+              </Routes>
+            </main>
+            <Footer />
+          </SocketProvider>
         </AuthProvider>
       </BrowserRouter>
     </div>
