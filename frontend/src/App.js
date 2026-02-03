@@ -3,6 +3,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { Navbar } from "@/components/Navbar";
 import { Footer } from "@/components/Footer";
 import { AuthProvider } from "@/contexts/AuthContext";
+import { SocketProvider } from "@/contexts/SocketContext";
 import { ProtectedRoute } from "@/components/ProtectedRoute";
 import LandingPage from "@/pages/LandingPage";
 import ListingsPage from "@/pages/ListingsPage";
@@ -15,6 +16,7 @@ import RoleSelectionPage from "@/pages/RoleSelectionPage";
 import OwnerDashboard from "@/pages/OwnerDashboard";
 import OwnerProfilePage from "@/pages/OwnerProfilePage";
 import AddListingPageNew from "@/pages/AddListingPageNew";
+import OwnerInboxPage from "@/pages/OwnerInboxPage";
 
 function App() {
   return (
