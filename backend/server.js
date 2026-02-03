@@ -58,6 +58,10 @@ app.use((err, req, res, next) => {
 });
 
 const PORT = process.env.PORT || 8001;
-app.listen(PORT, '0.0.0.0', () => {
+
+// Initialize Socket.IO
+initializeSocket(server);
+
+server.listen(PORT, '0.0.0.0', () => {
   console.log(`Server running on port ${PORT}`);
 });
