@@ -31,9 +31,9 @@ const RoleSelectionPage = () => {
 
     if (result.success) {
       if (selectedRole === 'OWNER') {
-        navigate('/owner/dashboard');
+        navigate('/owner/add-listing');
       } else {
-        navigate('/');
+        navigate('/listings');
       }
     } else {
       setError(result.message);
