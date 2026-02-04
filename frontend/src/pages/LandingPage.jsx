@@ -41,14 +41,14 @@ export default function LandingPage() {
   ];
 
   return (
-    <div className="min-h-screen" style={{ backgroundColor: '#F9FAFB' }}>
-      <section className="relative py-20 px-4 sm:px-6 lg:px-8" style={{ backgroundColor: '#1F2937' }}>
+    <div className="min-h-screen bg-background">
+      <section className="relative py-20 px-4 sm:px-6 lg:px-8 bg-primary">
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-12">
-            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-white mb-6" data-testid="landing-hero-title">
+            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-white mb-6 leading-tight" data-testid="landing-hero-title">
               Find Your Perfect Rental Space
             </h1>
-            <p className="text-lg sm:text-xl text-gray-300 max-w-2xl mx-auto" data-testid="landing-hero-subtitle">
+            <p className="text-lg sm:text-xl text-white/80 max-w-2xl mx-auto leading-relaxed" data-testid="landing-hero-subtitle">
               Discover rooms, houses, and lodges for short or long-term stays. Your next home is just a click away.
             </p>
           </div>
@@ -58,8 +58,8 @@ export default function LandingPage() {
           <div className="mt-12 grid grid-cols-3 gap-8 max-w-2xl mx-auto">
             {stats.map((stat, index) => (
               <div key={index} className="text-center">
-                <div className="text-3xl sm:text-4xl font-bold text-white mb-2">{stat.value}</div>
-                <div className="text-sm text-gray-400">{stat.label}</div>
+                <div className="text-3xl sm:text-4xl font-bold text-accent mb-2">{stat.value}</div>
+                <div className="text-sm text-white/70">{stat.label}</div>
               </div>
             ))}
           </div>
@@ -68,7 +68,7 @@ export default function LandingPage() {
 
       <section className="py-16 px-4 sm:px-6 lg:px-8">
         <div className="max-w-7xl mx-auto">
-          <h2 className="text-3xl sm:text-4xl font-bold text-center mb-12" style={{ color: '#1F2937' }}>
+          <h2 className="text-3xl sm:text-4xl font-bold text-center mb-12 text-foreground">
             What are you looking for?
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
@@ -77,7 +77,7 @@ export default function LandingPage() {
               return (
                 <Card
                   key={type.type}
-                  className="hover:shadow-xl transition-all duration-300 cursor-pointer border-2 border-transparent hover:border-blue-500"
+                  className="hover:shadow-soft-lg transition-all duration-300 cursor-pointer border-2 border-transparent hover:border-secondary/50 group"
                   onClick={() => {
                     if (!isAuthenticated) {
                       navigate('/login');
