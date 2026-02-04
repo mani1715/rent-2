@@ -155,7 +155,7 @@ export const Navbar = () => {
           </div>
 
           <button
-            className="md:hidden"
+            className="md:hidden text-white"
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
             data-testid="navbar-mobile-menu-button"
           >
@@ -164,7 +164,7 @@ export const Navbar = () => {
         </div>
 
         {mobileMenuOpen && (
-          <div className="md:hidden py-4 space-y-4" data-testid="navbar-mobile-menu">
+          <div className="md:hidden py-4 space-y-4 border-t border-white/10" data-testid="navbar-mobile-menu">
             <form onSubmit={handleSearch} className="w-full">
               <div className="relative">
                 <Input
@@ -172,22 +172,22 @@ export const Navbar = () => {
                   placeholder="Search..."
                   value={searchQuery}
                   onChange={(e) => setSearchQuery(e.target.value)}
-                  className="pr-10"
+                  className="pr-10 bg-white/10 border-white/20 text-white placeholder:text-white/60"
                   data-testid="navbar-mobile-search-input"
                 />
                 <button type="submit" className="absolute right-2 top-1/2 -translate-y-1/2">
-                  <Search className="h-5 w-5 text-gray-400" />
+                  <Search className="h-5 w-5 text-white/60" />
                 </button>
               </div>
             </form>
             <Link to="/listings" onClick={() => setMobileMenuOpen(false)} className="block">
-              <Button variant="ghost" className="w-full justify-start" data-testid="navbar-mobile-listings-link">
+              <Button variant="ghost" className="w-full justify-start text-white hover:bg-white/10" data-testid="navbar-mobile-listings-link">
                 Browse
               </Button>
             </Link>
             {isAuthenticated && (
               <Link to="/favorites" onClick={() => setMobileMenuOpen(false)} className="block">
-                <Button variant="ghost" className="w-full justify-start" data-testid="navbar-mobile-favorites-link">
+                <Button variant="ghost" className="w-full justify-start text-white hover:bg-white/10" data-testid="navbar-mobile-favorites-link">
                   <Heart className="h-5 w-5 mr-2" />
                   Favorites
                 </Button>
@@ -196,19 +196,19 @@ export const Navbar = () => {
             {isOwner && (
               <>
                 <Link to="/owner/dashboard" onClick={() => setMobileMenuOpen(false)} className="block">
-                  <Button variant="ghost" className="w-full justify-start">
+                  <Button variant="ghost" className="w-full justify-start text-white hover:bg-white/10">
                     <LayoutDashboard className="h-5 w-5 mr-2" />
                     Dashboard
                   </Button>
                 </Link>
                 <Link to="/owner/inbox" onClick={() => setMobileMenuOpen(false)} className="block">
-                  <Button variant="ghost" className="w-full justify-start">
+                  <Button variant="ghost" className="w-full justify-start text-white hover:bg-white/10">
                     <MessageCircle className="h-5 w-5 mr-2" />
                     Messages
                   </Button>
                 </Link>
                 <Link to="/owner/add-listing" onClick={() => setMobileMenuOpen(false)} className="block">
-                  <Button className="w-full" style={{ backgroundColor: '#2563EB', color: 'white' }} data-testid="navbar-mobile-add-listing-link">
+                  <Button className="w-full bg-accent hover:bg-accent/90 text-white font-semibold rounded-xl" data-testid="navbar-mobile-add-listing-link">
                     List Property
                   </Button>
                 </Link>
