@@ -46,7 +46,7 @@ export default function LandingPage() {
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-12">
             <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-white mb-6 leading-tight" data-testid="landing-hero-title">
-              Find Your Perfect Rental Space
+              RENTEASE: Connecting Owners and Tenants with Ease
             </h1>
             <p className="text-lg sm:text-xl text-white/80 max-w-2xl mx-auto leading-relaxed" data-testid="landing-hero-subtitle">
               Discover rooms, houses, and lodges for short or long-term stays. Your next home is just a click away.
@@ -186,7 +186,7 @@ export default function LandingPage() {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
             <div>
               <h2 className="text-3xl sm:text-4xl font-bold mb-6 text-foreground">
-                Why Choose RentSpace?
+                Why Choose RENTEASE?
               </h2>
               <ul className="space-y-4">
                 {[
@@ -226,7 +226,7 @@ export default function LandingPage() {
             Ready to Find Your Next Home?
           </h2>
           <p className="text-lg text-blue-100 mb-8">
-            Join thousands of happy renters and landlords on RentSpace
+            Join thousands of happy renters and landlords on RENTEASE
           </p>
           <Button
             size="lg"
