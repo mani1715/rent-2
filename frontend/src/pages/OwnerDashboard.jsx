@@ -199,7 +199,7 @@ const OwnerDashboard = () => {
                     <div className="p-4">
                       <h3 className="font-bold text-gray-900 mb-2">{listing.title}</h3>
                       <p className="text-sm text-gray-600 mb-2">{listing.addressText}</p>
-                      <p className="text-lg font-bold text-blue-600 mb-4">${listing.price}/month</p>
+                      <p className="text-lg font-bold text-blue-600 mb-4">₹ {listing.price.toLocaleString('en-IN')} / month</p>
                       <div className="flex space-x-2">
                         <Link
                           to={`/listing/${listing._id}`}
