@@ -27,7 +27,7 @@ export const Navbar = () => {
         <div className="flex justify-between items-center h-16">
           <Link to="/" className="flex items-center space-x-2 group" data-testid="navbar-logo">
             <Home className="h-8 w-8 text-accent transition-transform group-hover:scale-110" />
-            <span className="text-xl font-bold text-white">RentSpace</span>
+            <span className="text-xl font-bold text-white">RENTEASE</span>
           </Link>
 
           <form onSubmit={handleSearch} className="hidden md:flex flex-1 max-w-md mx-8">

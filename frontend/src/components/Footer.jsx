@@ -9,10 +9,10 @@ export const Footer = () => {
           <div>
             <div className="flex items-center space-x-2 mb-4">
               <Home className="h-6 w-6" style={{ color: '#2563EB' }} />
-              <span className="text-lg font-bold" style={{ color: '#1F2937' }}>RentSpace</span>
+              <span className="text-lg font-bold" style={{ color: '#1F2937' }}>RENTEASE</span>
             </div>
             <p className="text-sm text-gray-600">
-              Your trusted platform for finding the perfect rental space.
+              Connecting Owners and Tenants with Ease
             </p>
           </div>
 
@@ -67,7 +67,7 @@ export const Footer = () => {
 
         <div className="mt-8 pt-8 border-t border-gray-200">
           <p className="text-center text-sm text-gray-600">
-            © 2025 RentSpace. All rights reserved.
+            © 2025 RENTEASE. All rights reserved.
           </p>
         </div>
       </div>
