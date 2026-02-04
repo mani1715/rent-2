@@ -72,7 +72,7 @@ const RegisterPage = () => {
         <div className="text-center mb-10">
           <div className="flex justify-center items-center space-x-2 mb-4">
             <Home className="h-10 w-10 text-blue-600" />
-            <span className="text-3xl font-bold text-gray-900">RentSpace</span>
+            <span className="text-3xl font-bold text-gray-900">RENTEASE</span>
           </div>
           <h2 className="text-4xl font-extrabold text-gray-900 mb-2">
             Create Your Account

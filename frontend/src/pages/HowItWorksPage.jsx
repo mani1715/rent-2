@@ -67,7 +67,7 @@ export default function HowItWorksPage() {
       <section className="py-16 px-4 sm:px-6 lg:px-8" style={{ backgroundColor: '#1F2937' }}>
         <div className="max-w-4xl mx-auto text-center">
           <h1 className="text-4xl sm:text-5xl font-bold text-white mb-6" data-testid="how-it-works-title">
-            How RentSpace Works
+            How RENTEASE Works
           </h1>
           <p className="text-xl text-gray-300 mb-8">
             Find your perfect rental in three simple steps
@@ -135,7 +135,7 @@ export default function HowItWorksPage() {
       <section className="py-16 px-4 sm:px-6 lg:px-8" style={{ backgroundColor: 'white' }}>
         <div className="max-w-6xl mx-auto">
           <h2 className="text-3xl font-bold text-center mb-12" style={{ color: '#1F2937' }}>
-            Why Choose RentSpace?
+            Why Choose RENTEASE?
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {features.map((feature, index) => {
