@@ -150,24 +150,24 @@ export default function LandingPage() {
               </p>
             </div>
             <div className="text-center">
-              <div className="inline-flex items-center justify-center w-16 h-16 rounded-full mb-4" style={{ backgroundColor: '#EFF6FF' }}>
-                <Users className="h-8 w-8" style={{ color: '#2563EB' }} />
+              <div className="inline-flex items-center justify-center w-16 h-16 rounded-full mb-4 bg-secondary/10">
+                <Users className="h-8 w-8 text-secondary" />
               </div>
-              <h3 className="text-xl font-semibold mb-2" style={{ color: '#1F2937' }}>
+              <h3 className="text-xl font-semibold mb-2 text-foreground">
                 Connect & Visit
               </h3>
-              <p className="text-gray-600">
+              <p className="text-muted-foreground">
                 Contact owners and schedule property visits
               </p>
             </div>
             <div className="text-center">
-              <div className="inline-flex items-center justify-center w-16 h-16 rounded-full mb-4" style={{ backgroundColor: '#EFF6FF' }}>
-                <Star className="h-8 w-8" style={{ color: '#2563EB' }} />
+              <div className="inline-flex items-center justify-center w-16 h-16 rounded-full mb-4 bg-accent/10">
+                <Star className="h-8 w-8 text-accent" />
               </div>
-              <h3 className="text-xl font-semibold mb-2" style={{ color: '#1F2937' }}>
+              <h3 className="text-xl font-semibold mb-2 text-foreground">
                 Book & Move In
               </h3>
-              <p className="text-gray-600">
+              <p className="text-muted-foreground">
                 Secure your rental and move into your new space
               </p>
             </div>
@@ -181,11 +181,11 @@ export default function LandingPage() {
         </div>
       </section>
 
-      <section className="py-16 px-4 sm:px-6 lg:px-8" style={{ backgroundColor: 'white' }}>
+      <section className="py-16 px-4 sm:px-6 lg:px-8 bg-card">
         <div className="max-w-7xl mx-auto">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
             <div>
-              <h2 className="text-3xl sm:text-4xl font-bold mb-6" style={{ color: '#1F2937' }}>
+              <h2 className="text-3xl sm:text-4xl font-bold mb-6 text-foreground">
                 Why Choose RentSpace?
               </h2>
               <ul className="space-y-4">
