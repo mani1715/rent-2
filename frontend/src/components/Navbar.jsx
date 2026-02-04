@@ -52,14 +52,14 @@ export const Navbar = () => {
 
           <div className="hidden md:flex items-center space-x-4">
             <Link to="/listings" data-testid="navbar-listings-link">
-              <Button variant="ghost" style={{ color: '#1F2937' }}>
+              <Button variant="ghost" className="text-white hover:bg-white/10 hover:text-white">
                 Browse
               </Button>
             </Link>
             
             {isAuthenticated && (
               <Link to="/favorites" data-testid="navbar-favorites-link">
-                <Button variant="ghost" style={{ color: '#1F2937' }}>
+                <Button variant="ghost" className="text-white hover:bg-white/10 hover:text-white">
                   <Heart className="h-5 w-5 mr-2" />
                   Favorites
                 </Button>
@@ -69,19 +69,19 @@ export const Navbar = () => {
             {isOwner && (
               <>
                 <Link to="/owner/dashboard" data-testid="navbar-dashboard-link">
-                  <Button variant="ghost" style={{ color: '#1F2937' }}>
+                  <Button variant="ghost" className="text-white hover:bg-white/10 hover:text-white">
                     <LayoutDashboard className="h-5 w-5 mr-2" />
                     Dashboard
                   </Button>
                 </Link>
                 <Link to="/owner/inbox" data-testid="navbar-inbox-link">
-                  <Button variant="ghost" style={{ color: '#1F2937' }}>
+                  <Button variant="ghost" className="text-white hover:bg-white/10 hover:text-white">
                     <MessageCircle className="h-5 w-5 mr-2" />
                     Messages
                   </Button>
                 </Link>
                 <Link to="/owner/add-listing" data-testid="navbar-add-listing-link">
-                  <Button style={{ backgroundColor: '#2563EB', color: 'white' }}>
+                  <Button className="bg-accent hover:bg-accent/90 text-white font-semibold rounded-xl shadow-soft">
                     List Property
                   </Button>
                 </Link>
@@ -91,12 +91,12 @@ export const Navbar = () => {
             {!isAuthenticated ? (
               <div className="flex items-center space-x-2">
                 <Link to="/login">
-                  <Button variant="ghost" style={{ color: '#1F2937' }}>
+                  <Button variant="ghost" className="text-white hover:bg-white/10 hover:text-white">
                     Login
                   </Button>
                 </Link>
                 <Link to="/register">
-                  <Button style={{ backgroundColor: '#2563EB', color: 'white' }}>
+                  <Button className="bg-secondary hover:bg-secondary/90 text-white font-semibold rounded-xl shadow-soft">
                     Sign Up
                   </Button>
                 </Link>
@@ -105,31 +105,31 @@ export const Navbar = () => {
               <div className="relative">
                 <button
                   onClick={() => setUserMenuOpen(!userMenuOpen)}
-                  className="flex items-center space-x-2 px-3 py-2 rounded-md hover:bg-gray-100"
+                  className="flex items-center space-x-2 px-3 py-2 rounded-xl hover:bg-white/10 text-white transition-colors"
                 >
                   <User className="h-5 w-5" />
                   <span className="text-sm font-medium">{user?.name}</span>
                 </button>
                 
                 {userMenuOpen && (
-                  <div className="absolute right-0 mt-2 w-48 bg-white rounded-md shadow-lg py-1 z-50">
-                    <div className="px-4 py-2 border-b border-gray-200">
-                      <p className="text-sm font-medium text-gray-900">{user?.name}</p>
-                      <p className="text-xs text-gray-500">{user?.email}</p>
-                      <p className="text-xs text-blue-600 mt-1">{user?.role}</p>
+                  <div className="absolute right-0 mt-2 w-48 bg-card rounded-xl shadow-soft-lg py-1 z-50 border border-border">
+                    <div className="px-4 py-3 border-b border-border">
+                      <p className="text-sm font-semibold text-foreground">{user?.name}</p>
+                      <p className="text-xs text-muted-foreground mt-0.5">{user?.email}</p>
+                      <p className="text-xs text-accent font-medium mt-1.5">{user?.role}</p>
                     </div>
                     {isOwner && (
                       <>
                         <Link
                           to="/owner/dashboard"
-                          className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+                          className="block px-4 py-2.5 text-sm text-foreground hover:bg-muted transition-colors"
                           onClick={() => setUserMenuOpen(false)}
                         >
                           Dashboard
                         </Link>
                         <Link
                           to="/owner/inbox"
-                          className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+                          className="block px-4 py-2.5 text-sm text-foreground hover:bg-muted transition-colors"
                           onClick={() => setUserMenuOpen(false)}
                         >
                           <MessageCircle className="h-4 w-4 inline mr-2" />
@@ -143,7 +143,7 @@ export const Navbar = () => {
                         setUserMenuOpen(false);
                         navigate('/');
                       }}
-                      className="block w-full text-left px-4 py-2 text-sm text-red-600 hover:bg-gray-100"
+                      className="block w-full text-left px-4 py-2.5 text-sm text-destructive hover:bg-muted transition-colors"
                     >
                       <LogOut className="h-4 w-4 inline mr-2" />
                       Logout
