@@ -19,6 +19,9 @@ module.exports = {
   			'soft-md': '0 4px 12px rgba(0, 0, 0, 0.08)',
   			'soft-lg': '0 8px 24px rgba(0, 0, 0, 0.10)',
   		},
+  		fontFamily: {
+  			sans: ['Inter', 'system-ui', '-apple-system', 'sans-serif'],
+  		},
   		colors: {
   			background: 'hsl(var(--background))',
   			foreground: 'hsl(var(--foreground))',
