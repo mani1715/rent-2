@@ -22,12 +22,12 @@ export const Navbar = () => {
   };
 
   return (
-    <nav className="bg-white border-b border-gray-200 sticky top-0 z-50 shadow-sm">
+    <nav className="bg-primary border-b border-primary/10 sticky top-0 z-50 shadow-soft">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
-          <Link to="/" className="flex items-center space-x-2" data-testid="navbar-logo">
-            <Home className="h-8 w-8" style={{ color: '#2563EB' }} />
-            <span className="text-xl font-bold" style={{ color: '#1F2937' }}>RentSpace</span>
+          <Link to="/" className="flex items-center space-x-2 group" data-testid="navbar-logo">
+            <Home className="h-8 w-8 text-accent transition-transform group-hover:scale-110" />
+            <span className="text-xl font-bold text-white">RentSpace</span>
           </Link>
 
           <form onSubmit={handleSearch} className="hidden md:flex flex-1 max-w-md mx-8">
