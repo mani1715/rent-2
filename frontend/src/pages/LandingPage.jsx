@@ -88,13 +88,13 @@ export default function LandingPage() {
                   data-testid={`property-type-card-${type.type}`}
                 >
                   <CardContent className="p-8 text-center">
-                    <div className="mb-4 inline-flex p-4 rounded-full" style={{ backgroundColor: '#EFF6FF' }}>
-                      <Icon className="h-12 w-12" style={{ color: '#2563EB' }} />
+                    <div className="mb-4 inline-flex p-4 rounded-full bg-secondary/10 group-hover:bg-secondary/20 transition-colors">
+                      <Icon className="h-12 w-12 text-secondary" />
                     </div>
-                    <h3 className="text-xl font-semibold mb-2" style={{ color: '#1F2937' }}>
+                    <h3 className="text-xl font-semibold mb-2 text-foreground group-hover:text-secondary transition-colors">
                       {type.title}
                     </h3>
-                    <p className="text-gray-600">{type.description}</p>
+                    <p className="text-muted-foreground">{type.description}</p>
                   </CardContent>
                 </Card>
               );
@@ -104,14 +104,14 @@ export default function LandingPage() {
       </section>
 
       {/* Featured Listings Section */}
-      <section className="py-16 px-4 sm:px-6 lg:px-8" style={{ backgroundColor: 'white' }}>
+      <section className="py-16 px-4 sm:px-6 lg:px-8 bg-card">
         <div className="max-w-7xl mx-auto">
           <div className="flex items-center justify-between mb-12">
             <div>
-              <h2 className="text-3xl sm:text-4xl font-bold" style={{ color: '#1F2937' }}>
+              <h2 className="text-3xl sm:text-4xl font-bold text-foreground">
                 Featured Properties
               </h2>
-              <p className="text-gray-600 mt-2">Hand-picked premium listings</p>
+              <p className="text-muted-foreground mt-2">Hand-picked premium listings</p>
             </div>
             <Link to="/listings">
               <Button variant="outline" className="hidden sm:flex">
@@ -131,21 +131,21 @@ export default function LandingPage() {
       {/* How It Works Section */}
       <section className="py-16 px-4 sm:px-6 lg:px-8">
         <div className="max-w-7xl mx-auto text-center">
-          <h2 className="text-3xl sm:text-4xl font-bold mb-4" style={{ color: '#1F2937' }}>
+          <h2 className="text-3xl sm:text-4xl font-bold mb-4 text-foreground">
             How It Works
           </h2>
-          <p className="text-gray-600 mb-12 max-w-2xl mx-auto">
+          <p className="text-muted-foreground mb-12 max-w-2xl mx-auto">
             Finding your perfect rental is easy with our simple three-step process
           </p>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
             <div className="text-center">
-              <div className="inline-flex items-center justify-center w-16 h-16 rounded-full mb-4" style={{ backgroundColor: '#EFF6FF' }}>
-                <Shield className="h-8 w-8" style={{ color: '#2563EB' }} />
+              <div className="inline-flex items-center justify-center w-16 h-16 rounded-full mb-4 bg-accent/10">
+                <Shield className="h-8 w-8 text-accent" />
               </div>
-              <h3 className="text-xl font-semibold mb-2" style={{ color: '#1F2937' }}>
+              <h3 className="text-xl font-semibold mb-2 text-foreground">
                 Search & Discover
               </h3>
-              <p className="text-gray-600">
+              <p className="text-muted-foreground">
                 Browse verified properties that match your needs
               </p>
             </div>
