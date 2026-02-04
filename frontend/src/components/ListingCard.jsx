@@ -25,7 +25,8 @@ export const ListingCard = ({ listing }) => {
   };
 
   const formatPrice = () => {
-    return `$${listing.price}/${listing.duration}`;
+    const formattedPrice = listing.price.toLocaleString('en-IN');
+    return `₹ ${formattedPrice} / ${listing.duration}`;
   };
 
   const getTypeColor = () => {

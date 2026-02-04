@@ -7,7 +7,7 @@ import { Slider } from '@/components/ui/slider';
 import { Button } from '@/components/ui/button';
 
 export const FilterPanel = ({ filters, onFilterChange, onReset }) => {
-  const [priceRange, setPriceRange] = useState([0, 5000]);
+  const [priceRange, setPriceRange] = useState([0, 50000]);
 
   const handlePriceChange = (value) => {
     setPriceRange(value);
@@ -104,12 +104,12 @@ export const FilterPanel = ({ filters, onFilterChange, onReset }) => {
 
         <div>
           <Label className="text-sm font-semibold mb-3 block" style={{ color: '#1F2937' }}>
-            Price Range: ${priceRange[0]} - ${priceRange[1]}
+            Price Range: ₹ {priceRange[0].toLocaleString('en-IN')} - ₹ {priceRange[1].toLocaleString('en-IN')}
           </Label>
           <Slider
             min={0}
-            max={5000}
-            step={100}
+            max={50000}
+            step={1000}
             value={priceRange}
             onValueChange={handlePriceChange}
             className="mt-2"

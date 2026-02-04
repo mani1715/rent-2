@@ -217,7 +217,7 @@ export default function ListingDetailPage() {
                 </div>
 
                 <div className="text-3xl font-bold" style={{ color: '#2563EB' }}>
-                  ${listing.price}/month
+                  ₹ {listing.price.toLocaleString('en-IN')} / month
                 </div>
               </CardContent>
             </Card>
